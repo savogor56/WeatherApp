@@ -1,16 +1,17 @@
 import {AppDispatch} from '../index'
 import {weatherAPI} from '../../api/weatherApi'
-import {WeatherData} from '../../services/types/weatherTypes'
 import {setIsFetching, setWeatherData} from './index'
 
-export const fethWeatherData = (city?: string, lat?: number, lon?: number) => async (dispatch: AppDispatch) => {
+export const fethWeatherByName = (city: string, measure: string) => async (dispatch: AppDispatch) => {
     dispatch(setIsFetching(true))
-    let weatherData: WeatherData | null = null
-    if (city) {
-     weatherData = await weatherAPI.getWeatherByCityName(city)
-    } else if (lat && lon) {
-        weatherData = await weatherAPI.getWeatherByGeo(lat, lon)
-    }
-    if (weatherData) dispatch(setWeatherData(weatherData))
+    const weatherData = await weatherAPI.getWeatherByCityName(city, measure)
+    dispatch(setWeatherData(weatherData))
+    dispatch(setIsFetching(false))
+}
+
+export const fetchWeatherByGeo = (lat: number, lon: number, measure: string) => async (dispatch: AppDispatch) => {
+    dispatch(setIsFetching(true))
+    const weatherData = await weatherAPI.getWeatherByGeo(lat, lon, measure)
+    dispatch(setWeatherData(weatherData))
     dispatch(setIsFetching(false))
 }

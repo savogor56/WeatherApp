@@ -1,0 +1,47 @@
+.root {
+  height: 15vh;
+  width: 79vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center;
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.title {
+  font-size: 18px;
+  line-height: 22px;
+  opacity: 0.6;
+}
+
+.info {
+  font-size: 25px;
+  line-height: 30px;
+}
+
+@media (max-width: 700px) {
+  .root {
+    padding-left: 10vw;
+    div {
+      width: 50%;
+    }
+  }
+
+  .title {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .info {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+  }
+}
