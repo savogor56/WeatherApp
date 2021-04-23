@@ -2,7 +2,31 @@
   font-size: 18px;
   line-height: 18px;
   display: flex;
+  align-self: center;
   span {
     opacity: 0.4;
+  }  
+}
+
+.toggle {
+  display: flex;
+  div {
+    border: 1px solid #FFF;
+    padding: 5px;
+    opacity: 0.6;
+    cursor: pointer;
+    width: 15px;
+    text-align: center;
   }
+  :first-child {
+    border-radius: 4px 0 0 4px;
+    border-right: 0;
+  }
+  :last-child {
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.selected {
+  opacity: 1 !important;
 }

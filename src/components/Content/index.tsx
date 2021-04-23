@@ -28,7 +28,7 @@ export const Content = () => {
             <div className={s.content}>
                 <div className={s.info}>
                     {getIcon(weatherData?.weather[0].main)}
-                    <div>{weatherData?.main.temp}&deg;</div>
+                    <div>{weatherData?.main.temp.toFixed()}&deg;</div>
                 </div>
                 <div className={s.subInfo}>{weatherData && upperFirstChar(weatherData.weather[0].description)}</div>
             </div>

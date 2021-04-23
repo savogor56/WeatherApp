@@ -24,6 +24,11 @@ export const WeatherApp = () => {
         if (city) {
             dispatch(fethWeatherByName(city, measure))
         }
+
+        if (!city && location.error) {
+            dispatch(fethWeatherByName('Москва', measure))
+        }
+        
     }, [city, location, dispatch, measure])
 
     const handleChangeCity = (city: string) => {
