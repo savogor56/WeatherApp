@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {useGeo} from './services/hooks/useGeo'
 import {fetchWeatherByGeo, fethWeatherByName} from './store/weather/operations'
 import {useAppDispatch, useAppSelector} from './services/hooks/reduxHooks'
@@ -11,9 +11,7 @@ import s from './style.module.scss'
 export const WeatherApp = () => {
     const location = useGeo()
     const dispatch = useAppDispatch()
-    const {isFetching} = useAppSelector(state => state.weather)
-    const [measure, setMeasure] = useState('metric')
-    const [city, setCity] = useState('')
+    const {isFetching, measure, city} = useAppSelector(state => state.weather)
 
     useEffect(() => {
         if (!city && location.loaded && location.coord) {
@@ -31,16 +29,12 @@ export const WeatherApp = () => {
         
     }, [city, location, dispatch, measure])
 
-    const handleChangeCity = (city: string) => {
-        setCity(city)
-    }
-
     return (
       <div className={s.root}>
           {isFetching && <Loader/>}
           {!isFetching &&
           <>
-            <Header onCityChange={handleChangeCity} />
+            <Header />
             <Content />
             <Footer />
           </>

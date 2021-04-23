@@ -3,11 +3,9 @@ import {WeatherData} from '../services/types/weatherTypes'
 
 export const weatherAPI = {
     async getWeatherByCityName(city: string, measure: string) {
-        const response = await instance.get<WeatherData>(`weather?q=${city}&units=${measure}`)
-        return response.data
+        return await instance.get<WeatherData>(`weather?q=${city}&units=${measure}`)
     },
     async getWeatherByGeo(lat: number, lon: number, measure: string) {
-        const response = await instance.get<WeatherData>(`weather?lat=${lat}&lon=${lon}&units=${measure}`)
-        return response.data
+        return instance.get<WeatherData>(`weather?lat=${lat}&lon=${lon}&units=${measure}`)
     }
 }

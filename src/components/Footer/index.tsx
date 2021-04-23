@@ -4,13 +4,15 @@ import {getDegreeDesc} from '../../services/utils'
 
 export const Footer = () => {
     const weatherData = useAppSelector(state => state.weather.weatherData)
+    const measure = useAppSelector(state => state.weather.measure)
 
     return(
         <footer className={s.root}>
             <div>
                 <p className={s.title}>Ветер</p>
                 <p className={s.info}>
-                    {weatherData?.wind.speed}м/с,
+                    {weatherData?.wind.speed.toFixed()} &nbsp;
+                    {measure === 'metric' ? 'м/с' : 'миль/ч' },&nbsp;
                     {weatherData && getDegreeDesc(weatherData.wind.deg)}
                 </p>
             </div>

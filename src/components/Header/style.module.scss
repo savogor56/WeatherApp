@@ -21,6 +21,7 @@
   div {
     cursor: pointer;
     opacity: 0.6;
+    display: flex;
     svg {
       width: 14.87px;
       height: 18.37px;
@@ -32,5 +33,17 @@
     svg {
       fill: #FFFFFF
     }
+  }
+}
+
+@media (max-width: 750px) {
+  .title {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .subTitle {
+    font-size: 15px;
+    line-height: 18px;
   }
 }

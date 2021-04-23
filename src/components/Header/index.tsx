@@ -1,39 +1,54 @@
 import s from './style.module.scss'
-import React, {useState} from 'react'
-import {useAppSelector} from '../../services/hooks/reduxHooks'
+import React, {useEffect, useState} from 'react'
+import {useAppDispatch, useAppSelector} from '../../services/hooks/reduxHooks'
 import {ReactComponent as ArrSvg} from './assets/Arr.svg'
-import {Toggle} from './components/toggle'
+import {Toggle} from './components/Toggle'
+import {Input} from './components/Input'
+import {setCity} from '../../store/weather'
 
-interface Props {
-    onCityChange: (city: string) => void
-}
-
-export const Header: React.FC<Props> = ({onCityChange}) => {
+export const Header = () => {
     const [isSelected, setIsSelected] = useState(true)
+    const [findGeo, setFindGeo] = useState(false)
     const cityName = useAppSelector(state => state.weather.weatherData?.name)
+    const error = useAppSelector(state => state.weather.error)
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (findGeo) {
+            dispatch(setCity(''))
+            setFindGeo(false)
+        }
+    }, [findGeo])
+
+    const handleShowInput = () => {
+        setIsSelected(prevState => !prevState)
+    }
+
+    const handleSelectMyGeo = () => {
+        setFindGeo(true)
+    }
 
     return(
         <header className={s.root}>
             <div className={s.title}>
                 {isSelected ?
                     <div>
-                        {cityName}
+                        {(cityName && !error) && cityName}
+                        {error && error.message}
                     </div> :
-                    <div>
-                        input
-                    </div>
+                    <Input onSelect={handleShowInput} />
                 }
                 <Toggle />
             </div>
             {
                 isSelected &&
                 <div className={s.subTitle}>
-                    <div>
+                    <div onClick={handleShowInput}>
                         Сменить город
                     </div>
-                    <div>
+                    <div onClick={handleSelectMyGeo}>
                         <ArrSvg />
-                        <span>Моё местоположение</span>
+                        Моё местоположение
                     </div>
                 </div>
             }

@@ -5,17 +5,18 @@
   align-self: center;
   span {
     opacity: 0.4;
+    margin-right: 9px;
   }  
 }
 
 .toggle {
   display: flex;
   div {
-    border: 1px solid #FFF;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 5px;
     opacity: 0.6;
     cursor: pointer;
-    width: 15px;
+    width: 27px;
     text-align: center;
   }
   :first-child {
@@ -23,10 +24,11 @@
     border-right: 0;
   }
   :last-child {
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 8px 8px 0;
   }
 }
 
 .selected {
   opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.2);
 }

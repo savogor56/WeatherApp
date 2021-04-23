@@ -26,9 +26,17 @@
   line-height: 30px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+  .info {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+@media (max-width: 750px) {
   .root {
     padding-left: 10vw;
+    padding-bottom: 5vh;
     div {
       width: 50%;
     }
@@ -42,6 +50,27 @@
   .info {
     font-size: 18px;
     line-height: 22px;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 400px) {
+  .root {
+    padding-left: 0;
+    padding-bottom: 5vh;
+    div {
+      width: 50%;
+    }
+  }
+
+  .title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .info {
+    font-size: 15px;
+    line-height: 19px;
     font-weight: bold;
   }
 }

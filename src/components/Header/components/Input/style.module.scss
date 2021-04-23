@@ -1,0 +1,35 @@
+.root {
+  display: flex;
+  height: 88px;
+  width: 579px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  justify-content: space-between;
+  align-items: center;
+  input {
+    margin-left: 10%;
+    outline: none;
+    border: none;
+    height: 50%;
+    font-size: 30px;
+    line-height: 36px;
+  }
+  button {
+    cursor: pointer;
+    color: #498CEC;
+    margin-right: 10%;
+    font-size: 30px;
+    line-height: 36px;
+    border: 0;
+    background: #FFFFFF;
+    outline: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .root {
+    height: 53px;
+    width: 88vw;
+  }
+}
