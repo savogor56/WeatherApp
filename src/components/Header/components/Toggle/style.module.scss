@@ -6,7 +6,7 @@
   span {
     opacity: 0.4;
     margin-right: 9px;
-  }  
+  }
 }
 
 .toggle {
@@ -31,4 +31,9 @@
 .selected {
   opacity: 1 !important;
   background: rgba(255, 255, 255, 0.2);
+}
+@media (max-width: 750px) {
+  .root.selection {
+    display: none;
+  }
 }

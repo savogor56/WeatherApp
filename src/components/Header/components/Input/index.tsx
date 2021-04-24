@@ -4,20 +4,36 @@ import {useAppDispatch} from '../../../../services/hooks/reduxHooks'
 import {setCity} from '../../../../store/weather'
 
 interface Props {
-    onSelect: () => void
+    onClose: () => void
 }
 
-export const Input: React.FC<Props> = ({onSelect}) => {
+export const Input: React.FC<Props> = ({onClose}) => {
     const [value, setValue] = useState('')
     const [change, setChange] = useState(false)
     const input = useRef<HTMLInputElement | null>(null)
+    const wrap = useRef<HTMLDivElement | null>(null)
     const dispatch = useAppDispatch()
+
+    const handleClickOutside = (e: MouseEvent) => {
+        const {current} = wrap
+        if (current && !current.contains((e.target as Node))) {
+            onClose()
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside)
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
 
     useEffect(() => {
         if (change) {
             dispatch(setCity(value))
             setChange(false)
-            onSelect()
+            onClose()
         }
     }, [change])
 
@@ -34,7 +50,7 @@ export const Input: React.FC<Props> = ({onSelect}) => {
     }
 
     return (
-        <div className={s.root} onClick={handleFocus}>
+        <div className={s.root} onClick={handleFocus} ref={wrap}>
             <input
                 ref={input}
                 value={value}

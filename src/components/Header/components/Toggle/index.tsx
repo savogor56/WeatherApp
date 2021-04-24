@@ -1,10 +1,14 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import cn from 'classnames'
 import {useAppDispatch, useAppSelector} from '../../../../services/hooks/reduxHooks'
 import s from './style.module.scss'
 import {setMeasure} from '../../../../store/weather'
 
-export const Toggle = () => {
+interface Props {
+    citySelected: boolean
+}
+
+export const Toggle: React.FC<Props> = ({citySelected}) => {
     const [change, setChange] = useState(false)
     const measure = useAppSelector(state => state.weather.measure)
     const dispatch = useAppDispatch()
@@ -22,7 +26,9 @@ export const Toggle = () => {
        if (!e.currentTarget.className) setChange(true)
     }
     return (
-        <div className={s.root}>
+        <div className={cn(s.root, {
+            [s.selection]: !citySelected
+        })}>
             <span>&deg;</span>
             <div className={s.toggle}>
                 <div

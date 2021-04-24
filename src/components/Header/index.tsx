@@ -36,9 +36,9 @@ export const Header = () => {
                         {(cityName && !error) && cityName}
                         {error && error.message}
                     </div> :
-                    <Input onSelect={handleShowInput} />
+                    <Input onClose={handleShowInput} />
                 }
-                <Toggle />
+                <Toggle citySelected={isSelected} />
             </div>
             {
                 isSelected &&
